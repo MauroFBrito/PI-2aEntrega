@@ -1,0 +1,14 @@
+*{
+    /* para todos */
+    margin: 0px; /* vem um valor padrão */
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+.modal-body{
+    display: flex;
+    background-color: blueviolet; 
+}
