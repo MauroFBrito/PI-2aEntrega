@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: API de Vacinação
+  version: 1.0.0
+  description: API para cadastrar e consultar vacinações de usuários.
+
+servers:
+  - url: http://localhost
+    description: Servidor local
+
+paths:
+  /cadastrar.php:
+    post:
+      summary: Cadastrar vacinação
+      description: Insere uma nova vacinação para um usuário.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id_usuario:
+                  type: integer
+                  example: 1
+                id_vacina:
+                  type: integer
+                  example: 101
+                data_aplicacao:
+                  type: string
+                  format: date
+                  example: 2025-11-09
+                local_aplicacao:
+                  type: string
+                  example: Posto Central
+                lote:
+                  type: string
+                  example: L12345
+                responsavel_aplicacao:
+                  type: string
+                  example: Dr. Silva
+      responses:
+        '200':
+          description: Vacinação cadastrada com sucesso
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Vacinação cadastrada com sucesso!
+
+  /listar.php:
+    get:
+      summary: Consultar vacinações
+      description: Lista vacinações de um usuário pelo ID.
+      parameters:
+        - name: id_usuario
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Lista de vacinações
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  Vacina: 101 - Data: 2025-11-09 - Local: Posto Central - Lote: L12345 - Responsável: Dr. Silva
